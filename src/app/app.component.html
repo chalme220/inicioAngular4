@@ -1,0 +1,174 @@
+<p>empece</p>
+<!-- -->
+<div>
+  <button type="button" class="btn btn-success" (click)="Adder()">Add</button>
+</div>
+
+<div class="alert alert-success alert-dismissable" *ngIf="msg">
+  <a href="#" class="close" (click)="closeAlert()">
+    &times;
+  </a>
+  {{msg}}
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <ul *ngFor="let cust of partidos; let i = index">
+      <li>
+        <span>id: </span>{{cust.id}}
+      </li>
+      <li>
+        <span>Equipo Local: </span>{{cust.equipoLocal}}
+      </li>
+      <li>
+        <span>Equipo visitante: </span>{{cust.equipoVisitante}}
+      </li>
+      <li>
+        <span>Resultado: </span>{{cust.golesLocal}} - {{cust.golesVisitante}}
+      </li>
+      <a (click)="editPartido(i)" class="btn btn-success">
+        Edit
+      </a>
+      <a (click)="deletePartido(i)" class="btn btn-danger">
+        Delete
+      </a>
+      <hr>
+    </ul>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="local" class="control-label col-sm-2">Equipo Local</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="local" name="local" [(ngModel)]="equipoLocal" placeholder="Introduce el equipo">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-success" (click)="regresaLocal()">Regresa</button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="mostrarEncontrados">
+      <ul *ngFor="let cust of partidos2">
+        <li>
+          <span>id: </span>{{cust.id}}
+        </li>
+        <li>
+          <span>Equipo Local: </span>{{cust.equipoLocal}}
+        </li>
+        <li>
+          <span>Equipo visitante: </span>{{cust.equipoVisitante}}
+        </li>
+        <li>
+          <span>Resultado: </span>{{cust.golesLocal}} - {{cust.golesVisitante}}
+        </li>
+        <hr>
+      </ul>
+    </div>
+
+  </div>
+  <div class="col-sm-4" *ngIf="hideUpdate">
+    <h2>Update Data:</h2>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="name" class="control-label col-sm-2">
+          Equipo Local
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="equipoLocal" name="equipoLocal" [(ngModel)]="partidoM.equipoLocal" placeholder="Enter a New Team">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="control-label col-sm-2">
+          Equipo Visitante
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="equipoVisitante" name="equipoVisitante" [(ngModel)]="partidoM.equipoVisitante"
+            placeholder="Enter a New Team">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="control-label col-sm-2">
+          goles Local
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="golesLocal" name="golesLocal" [(ngModel)]="partidoM.golesLocal" placeholder="Enter a New Team">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="control-label col-sm-2">
+          goles Visitante
+        </label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="golesVisitante" name="golesVisitante" [(ngModel)]="partidoM.golesVisitante" placeholder="Enter a New Team">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+          <button type="submit" class="btn btn-success" (click)="updatePartido()">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- -->
+  <div class="col-sm-4" *ngIf="hideCreate">
+      <h2>New Data:</h2>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="control-label col-sm-2">
+            Equipo Local
+          </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="equipoLocal" name="equipoLocal" [(ngModel)]="partidoN.equipoLocal" placeholder="Enter a New Team">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="control-label col-sm-2">
+            Equipo Visitante
+          </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="equipoVisitante" name="equipoVisitante" [(ngModel)]="partidoN.equipoVisitante"
+              placeholder="Enter a New Team">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="control-label col-sm-2">
+            goles Local
+          </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="golesLocal" name="golesLocal" [(ngModel)]="partidoN.golesLocal" placeholder="Enter a New Team">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="control-label col-sm-2">
+            goles Visitante
+          </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="golesVisitante" name="golesVisitante" [(ngModel)]="partidoN.golesVisitante" placeholder="Enter a New Team">
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="name" class="control-label col-sm-2">
+            Fecha
+          </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="fecha" name="fecha" [(ngModel)]="partidoN.fecha" placeholder="Enter a New Team">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button type="submit" class="btn btn-success" (click)="create()">
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+</div>
+
+
+<p>termine</p>

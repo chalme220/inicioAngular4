@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+.borde{
+    border: 1px #000 solid;
+    text-align: center;
+    height: 50px;
+}
+.color1{
+    background: #eeeeee;
+}
+.color2{
+    background: #fcc314;
+}
+.color3{
+    background: #94ac3c;
+}
+.color4{
+    background: #295ba7;
+}
